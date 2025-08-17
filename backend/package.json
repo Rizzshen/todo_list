@@ -1,0 +1,32 @@
+{
+  "name": "todolist",
+  "version": "1.0.0",
+  "description": "nothing yet",
+  "keywords": [
+    "todo",
+    "list"
+  ],
+  "homepage": "https://github.com/Rizzshen/todo_list#readme",
+  "bugs": {
+    "url": "https://github.com/Rizzshen/todo_list/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rizzshen/todo_list.git"
+  },
+  "license": "ISC",
+  "author": "Rishen",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "mongoose": "^8.17.0",
+    "nodemon": "^3.1.10"
+  }
+}

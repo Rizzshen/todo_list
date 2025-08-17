@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo-LIST</title>
+    <link href="./index.css" rel="stylesheet">
+</head>
+<body>
+    <button id="open-form-btn">+ Add Task</button>
+    
+    <div class="edit-form">
+      <div id="modal" class="modal">
+  <div class="modal-content">
+    <span id="close-modal" class="close">&times;</span>
+    <form id="todo-form">
+      <div class="form-row">
+        <label for="task-input">Task:</label>
+        <input type="text" id="task-input" name="inputTask" placeholder="Task" />
+      </div>
+
+      <div class="form-row">
+        <label for="priority-select">Priority:</label>
+        <select id="priority-select" name="priority">
+          <option value="Low">Low</option>
+          <option value="Medium">Medium</option>
+          <option value="High">High</option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <label for="due-date">Due Date:</label>
+        <input type="date" id="due-date" name="dueDate" />
+      </div>
+
+      <button type="submit">Add Task</button>
+    </form>
+  </div>
+</div>
+<div class="search-filters">
+  <!-- Search input always visible -->
+  <input type="text" id="search-input" placeholder="Search tasks...">
+  
+  <!-- Filter button -->
+  <button id="filter-toggle"> Filters</button>
+
+  <!-- Hidden filter options -->
+  <div id="filter-options" class="filter-options">
+    <!-- Status Filter -->
+    <div class="status-filter">
+      <p>Status:</p>
+      <label><input type="radio" name="status" value="all" checked> All</label>
+      <label><input type="radio" name="status" value="completed"> Completed</label>
+      <label><input type="radio" name="status" value="uncompleted"> Uncompleted</label>
+    </div>
+
+    <!-- Priority Filter -->
+    <div class="priority-filter">
+      <p>Priority:</p>
+      <label><input type="checkbox" value="High"> High</label>
+      <label><input type="checkbox" value="Medium"> Medium</label>
+      <label><input type="checkbox" value="Low"> Low</label>
+    </div>
+
+    <!-- Due Date -->
+    <div class="due-filter">
+      <label>Due Before:</label>
+      <input type="date" id="filter-due-date">
+    </div>
+  </div>
+</div>
+    <table>
+        <thead>
+            <tr>
+            <th></th>
+            <th>TASK</th>
+            <th>Priority</th>
+            <th>DueDate</th>
+            <th>Time</th>
+            <th>Actions</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody id="show-Tasks">
+        </tbody>
+    </table>
+    <script src="./script.js"></script>
+</body>
+</html>
