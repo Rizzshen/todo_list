@@ -18,6 +18,8 @@ const todoRoutes = require("./routes/todoRoute");
 app.use("/api/todo/", todoRoutes);
 
 
+
+
 const port = process.env.PORT || 3000;
 app.listen(port, ()=>{
     console.log(`LISTENNING TO PORT: http://localhost:${process.env.PORT}`);
