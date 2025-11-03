@@ -10,6 +10,7 @@ export function Edit({ onEdit, id, onClose, initialCompleted = false }) {
       form.completed.checked, 
       form.priority.value
     );
+    onClose();
   };
   return (
     <form onSubmit={editSubmit}>

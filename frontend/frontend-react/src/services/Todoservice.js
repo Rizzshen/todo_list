@@ -50,3 +50,15 @@ export async function UpdateTask(id, task, description, dueDate, completed, prio
         console.log(err)
     }
 } 
+
+export async function ToggleTaskCompletion(id, completed) {
+    try{
+        const body = JSON.stringify({completed})
+        const response = await fetch(`${baseUrl}/${id}`,{method: "PUT", body: body, headers:{"Content-Type": "application/json"}})
+        const data = await response.json()
+        console.log(data);
+        return data.task;
+    }
+    catch(err){
+        console.log(err)
+    }   }

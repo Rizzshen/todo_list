@@ -1,11 +1,20 @@
 import { Edit } from "./Edit";
-import {useState} from "react";
+import { useState } from "react";
 
-export function Cards({ taskname, description, duedate, completed,  priority, id, onDelete, onEdit}) {
+export function Cards({
+  taskname,
+  description,
+  duedate,
+  completed,
+  priority,
+  id,
+  onDelete,
+  onEdit,
+  onCheck,
+}) {
   const bgColor = completed
     ? "opacity-70 grayscale-[30%] bg-gray-800 text-gray-300 border-gray-600"
     : "bg-gray-800 text-white border-gray-700";
-  
 
   const badge =
     priority === "High"
@@ -16,7 +25,12 @@ export function Cards({ taskname, description, duedate, completed,  priority, id
   const [isEditing, setIsEditing] = useState(false);
   if (isEditing) {
     return (
-      <Edit onEdit={onEdit} id={id} onClose={()=>setIsEditing(false)} initialCompleted = {completed}/>
+      <Edit
+        onEdit={onEdit}
+        id={id}
+        onClose={() => setIsEditing(false)}
+        initialCompleted={completed}
+      />
     );
   }
   return (
@@ -26,14 +40,24 @@ export function Cards({ taskname, description, duedate, completed,  priority, id
       <div className="flex flex-col w-full gap-1">
         <div className="flex items-start w-full group">
           {completed ? (
-            <span className="flex justify-center items-center w-6 h-6 mt-1 border-2 rounded-full bg-green-400 text-white text-sm font-bold cursor-pointer transition-all duration-300">
-              ✓
-            </span>
+              <span
+                className="flex justify-center items-center w-6 h-6 mt-1 border-2 rounded-full bg-green-400 text-white text-sm font-bold cursor-pointer transition-all duration-300 animate-[pulseGlow_1s_ease-in-out]"
+                onClick={() => onCheck(id, false)}
+              >
+                ✓
+              </span>
           ) : (
-            <span className={`flex justify-center items-center w-5 h-5 mt-1 border-2 p-1 rounded-full border-white  cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></span>
+            <span
+              className={`flex justify-center items-center w-5 h-5 mt-1 border-2 p-1 rounded-full border-white  cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
+              onClick={() => onCheck(id, true)}
+            ></span>
           )}
 
-          <h2 className={`font-bold text-xl mb-2 ml-0 transition-all duration-300 transform group-hover:translate-x-6 ${ completed ? "line-through" : "" } leading-tight`}>
+          <h2
+            className={`font-bold text-xl mb-2 ml-0 transition-all duration-300 transform group-hover:translate-x-6 ${
+              completed ? "line-through" : ""
+            } leading-tight`}
+          >
             {taskname}
           </h2>
         </div>
@@ -48,7 +72,6 @@ export function Cards({ taskname, description, duedate, completed,  priority, id
         {/* Deadline */}
         <p className="mt-2 text-sm text-gray-300">
           <span className="font-medium">Deadline:</span>{" "}
-          
           {duedate
             ? new Date(duedate).toLocaleDateString("en-US", {
                 month: "short",
@@ -56,7 +79,6 @@ export function Cards({ taskname, description, duedate, completed,  priority, id
                 year: "numeric",
               })
             : "None"}
-          
         </p>
 
         {/* Description */}
@@ -93,7 +115,12 @@ export function Cards({ taskname, description, duedate, completed,  priority, id
           title="Delete"
           onClick={() => {
             onDelete(id);
-            console.log("Cards: delete clicked, id=", id, "onDelete=", !!onDelete);
+            console.log(
+              "Cards: delete clicked, id=",
+              id,
+              "onDelete=",
+              !!onDelete
+            );
           }}
         >
           <svg
@@ -115,7 +142,9 @@ export function Cards({ taskname, description, duedate, completed,  priority, id
         {/* Completed / Pending Status */}
         <p
           className={`px-2 py-1 text-xs rounded-full font-semibold ml-2 ${
-            completed ? "bg-green-100 text-green-700" : "bg-yellow-100 text-yellow-700"
+            completed
+              ? "bg-green-100 text-green-700"
+              : "bg-yellow-100 text-yellow-700"
           }`}
         >
           {completed ? "Completed" : "Pending"}
