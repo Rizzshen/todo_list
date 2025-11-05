@@ -30,6 +30,10 @@ export function Cards({
         id={id}
         onClose={() => setIsEditing(false)}
         initialCompleted={completed}
+        taskname={taskname}
+        description={description}
+        duedate={duedate}
+        priority={priority}
       />
     );
   }
